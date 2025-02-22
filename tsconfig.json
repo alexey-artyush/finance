@@ -7,7 +7,7 @@
       "@/*": [
         "src/*"
       ],
-      "@app/*": [
+      "@application/*": [
         "src/app/*"
       ],
       "@processes/*": [
