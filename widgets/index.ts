@@ -1,0 +1,1 @@
+export { ExpenseIncomeW } from './ExpenseIncome/ExpenseIncomeW';

@@ -1,11 +1,10 @@
-import { View, Text, Pressable } from 'react-native';
-import { Link } from 'expo-router';
+import { View } from 'react-native';
+import { ExpenseIncomeW } from 'widgets';
 
 export default function ExpensesList() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Expenses List</Text>
-      <Link href="/expenses/123">View Expense #123</Link>
+      <ExpenseIncomeW />
     </View>
   );
 }

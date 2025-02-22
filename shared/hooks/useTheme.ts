@@ -1,34 +1,21 @@
 import { useCallback } from 'react';
 import { appActions, getCurrentTheme } from 'entities/app';
 import { ETheme } from 'entities/app/model/types/e-theme';
-import { useAppDispatch } from 'appliaction/providers/store';
 import { useSelector } from 'react-redux';
 import { uiThemeHelper } from 'shared/lib';
-import { MD3DarkTheme, MD3LightTheme } from 'react-native-paper';
+import { MD3DarkTheme, MD3LightTheme, MD3Theme } from 'react-native-paper';
+import { useAppDispatch } from './useAppDispatch';
 
-const lightTheme = {
-  ...MD3LightTheme,
-  colors: {
-    ...MD3LightTheme.colors,
-    primary: '#006AF5',
-    secondary: '#2B2D33',
-  },
-};
-
-const darkTheme = {
-  ...MD3DarkTheme,
-  colors: {
-    ...MD3DarkTheme.colors,
-    primary: '#2196F3',
-    secondary: '#FFFFFF',
-  },
-};
-
-export const useTheme = () => {
+export const useTheme = (): {
+  currentTheme: MD3Theme;
+  currentThemeType: ETheme;
+  toggleTheme: () => Promise<void>;
+  loadSavedTheme: () => Promise<void>;
+} => {
   const dispatch = useAppDispatch();
   const currentThemeType = useSelector(getCurrentTheme);
   
-  const currentTheme = currentThemeType === ETheme.LIGHT ? lightTheme : darkTheme;
+  const currentTheme = currentThemeType === ETheme.LIGHT ? MD3LightTheme : MD3DarkTheme;
 
   const toggleTheme = useCallback(async () => {
     const newTheme = currentThemeType === ETheme.LIGHT ? ETheme.DARK : ETheme.LIGHT;

@@ -9,16 +9,16 @@ interface IProps {
   disabled?: boolean;
 }
 
-export const UiButton = ({ 
-  onPress, 
-  title, 
+export const UiButton = ({
+  onPress,
+  title,
   mode = 'contained',
   loading = false,
-  disabled = false 
+  disabled = false,
 }: IProps) => {
   return (
-    <PaperButton 
-      mode={mode} 
+    <PaperButton
+      mode={mode}
       onPress={onPress}
       loading={loading}
       disabled={disabled}
