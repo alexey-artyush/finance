@@ -1,7 +1,7 @@
-import { ITheme } from '@/shared/types/themes';
 import { StyleSheet } from 'react-native';
+import { MD3Theme } from 'react-native-paper';
 
-export const createStyles = (theme: ITheme) =>
+export const createStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     container: {
       width: '100%',
@@ -13,14 +13,14 @@ export const createStyles = (theme: ITheme) =>
       flexDirection: 'row',
       alignItems: 'center',
       borderBottomWidth: 2,
-      borderColor: theme.border,
+      borderColor: theme.colors.outline,
     },
     input: {
       flex: 1,
       height: 'auto',
       textAlign: 'center',
       fontSize: 22,
-      color: theme.text,
+      color: theme.colors.outline,
     },
     currencyButton: {
       paddingHorizontal: 8,
@@ -30,18 +30,18 @@ export const createStyles = (theme: ITheme) =>
     currencyText: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: theme.active,
+      color: theme.colors.primary,
     },
     currencyList: {
       position: 'absolute',
       right: '25%',
-      backgroundColor: theme.background,
+      backgroundColor: theme.colors.background,
       borderRadius: 8,
       borderWidth: 1,
-      borderColor: theme.border,
+      borderColor: theme.colors.outline,
       padding: 8,
       elevation: 5,
-      shadowColor: theme.text,
+      shadowColor: theme.colors.outline,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
@@ -49,17 +49,17 @@ export const createStyles = (theme: ITheme) =>
     currencyItem: {
       padding: 8,
       borderBottomWidth: 1,
-      borderBottomColor: theme.border,
+      borderBottomColor: theme.colors.outline,
     },
     currencyItemText: {
-      color: theme.text,
+      color: theme.colors.outline,
       fontSize: 16,
     },
     selectedCurrencyItem: {
-      backgroundColor: `${theme.active}20`,
+      backgroundColor: `${theme.colors.primary}20`,
     },
     selectedCurrencyText: {
-      color: theme.active,
+      color: theme.colors.primary,
       fontWeight: 'bold',
     },
   });

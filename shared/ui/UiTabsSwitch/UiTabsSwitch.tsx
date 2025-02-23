@@ -3,15 +3,21 @@ import { useMemo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from 'shared/hooks';
 
-interface IProps {
-  tabs: { title: string }[];
-  currentTab: string;
-  onTabChange: (title: string) => void;
+interface IProps<T extends string> {
+  tabs: { title: T }[];
+  currentTab: T;
+  onTabChange: (title: T) => void;
+  size?: 'm' | 'l';
 }
 
-export const UiTabSwitch = ({ tabs, currentTab, onTabChange }: IProps) => {
+export const UiTabsSwitch = <T extends string>({
+  tabs,
+  currentTab,
+  onTabChange,
+  size = 'l',
+}: IProps<T>) => {
   const { currentTheme } = useTheme();
-  const styles = useMemo(() => createStyles(currentTheme), [currentTheme]);
+  const styles = useMemo(() => createStyles(currentTheme, size), [currentTheme, size]);
 
   return (
     <View style={styles.container}>

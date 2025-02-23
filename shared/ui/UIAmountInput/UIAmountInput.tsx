@@ -1,5 +1,5 @@
 import { View, TextInput, Text, Pressable } from 'react-native';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { createStyles } from './UIAmountInput.styles';
 import { useTheme } from 'shared/hooks';
 import { currencies, ECurrency } from 'entities/currency';
@@ -11,10 +11,10 @@ interface IProps {
 }
 
 export const UIAmountInput = ({ value, onChange, autoFocus }: IProps) => {
-  const theme = useTheme();
+  const { currentTheme } = useTheme();
+  const styles = useMemo(() => createStyles(currentTheme), [currentTheme]);
   const [currency, setCurrency] = useState(ECurrency.USD);
   const [showCurrencies, setShowCurrencies] = useState(false);
-  const styles = createStyles(theme);
 
   const handleCurrencyPress = () => {
     setShowCurrencies(!showCurrencies);
@@ -34,7 +34,7 @@ export const UIAmountInput = ({ value, onChange, autoFocus }: IProps) => {
           onChangeText={onChange}
           keyboardType="numeric"
           placeholder="Type amount"
-          placeholderTextColor={`${theme.currentTheme.colors.primary}60`}
+          placeholderTextColor={`${currentTheme.colors.primary}60`}
           autoFocus={autoFocus}
         />
         <Pressable onPress={handleCurrencyPress} style={styles.currencyButton}>
@@ -44,7 +44,7 @@ export const UIAmountInput = ({ value, onChange, autoFocus }: IProps) => {
 
       {showCurrencies && (
         <View style={styles.currencyList}>
-          {currencies.map((curr) => (
+          {currencies.map(curr => (
             <Pressable
               key={curr}
               style={[styles.currencyItem, curr === currency && styles.selectedCurrencyItem]}

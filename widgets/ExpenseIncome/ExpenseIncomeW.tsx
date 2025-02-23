@@ -1,11 +1,9 @@
-import { getExpenses, getExpensesThunk } from 'entities/expense/model';
-import { AddExpense } from 'features/AddExpense/AddExpense';
+import { getExpensesThunk } from 'entities/expense/model';
+import { ShowStatisticF } from 'features';
 import { FC, useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { SegmentedButtons } from 'react-native-paper';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/hooks';
-import { UiTabSwitch } from 'shared/ui/UiTabsSwitch/UiTabsSwitch';
+import { UiTabsSwitch } from 'shared/ui';
 
 enum ETabs {
   EXPENSES = 'EXPENSES',
@@ -14,7 +12,6 @@ enum ETabs {
 
 export const ExpenseIncomeW: FC = () => {
   const dispatch = useAppDispatch();
-  const expenses = useSelector(getExpenses);
   const [currentTab, setCurrentTab] = useState<ETabs>(ETabs.EXPENSES);
 
   useEffect(() => {
@@ -23,14 +20,14 @@ export const ExpenseIncomeW: FC = () => {
 
   return (
     <View>
-      <UiTabSwitch
-        tabs={[{ title: 'EXPENSES' }, { title: 'INCOME' }]}
+      <UiTabsSwitch
+        tabs={[{ title: ETabs.EXPENSES }, { title: ETabs.INCOME }]}
         currentTab={currentTab}
         onTabChange={title => setCurrentTab(title as ETabs)}
       />
-
+      <ShowStatisticF />
       <View>
-        {currentTab === ETabs.EXPENSES && <AddExpense expenses={expenses} />}
+        {/* {currentTab === ETabs.EXPENSES && <AddExpense expenses={expenses} />} */}
         {/* {currentTab === ETabs.INCOME && <ListIncomeItem expenses={expenses} />} */}
       </View>
     </View>

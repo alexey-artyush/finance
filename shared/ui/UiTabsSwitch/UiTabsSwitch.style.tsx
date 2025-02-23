@@ -1,20 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
-export const createStyles = (theme: MD3Theme) =>
+export const createStyles = (theme: MD3Theme, size: 'm' | 'l') =>
   StyleSheet.create({
     container: {},
     buttonWrapper: {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      gap: 10,
+      gap: size === 'm' ? 10 : 20,
     },
     tabButton: {
-      padding: 8,
+      padding: size === 'm' ? 8 : 16,
     },
     tabText: {
-      fontSize: 16,
+      fontSize: size === 'm' ? 16 : 24,
       color: theme.colors.outline,
     },
     activeTabText: {
