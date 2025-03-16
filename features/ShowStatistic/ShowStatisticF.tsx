@@ -5,6 +5,7 @@ import { Text } from 'react-native-paper';
 import { useTheme } from 'shared/hooks';
 import { UiChart, UiTabsSwitch } from 'shared/ui';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 enum EPeriod {
   DAY = 'day',
   WEEK = 'week',

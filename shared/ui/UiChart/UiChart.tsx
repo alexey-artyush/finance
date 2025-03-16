@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 import { Dimensions, View } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import { useTheme } from 'shared/hooks';
+import { createStyles } from './UiChart.styles';
 
 interface UiChartProps {
   data: {
@@ -17,27 +20,23 @@ interface UiChartProps {
 }
 
 export const UiChart = ({ pieData }: UiChartProps) => {
+  const { currentTheme } = useTheme();
+  const styles = useMemo(() => createStyles(currentTheme), [currentTheme]);
+
   return (
-    <View
-      style={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        paddingHorizontal: 16,
-      }}
-    >
+    <View style={styles.uiChart}>
       <PieChart
         data={pieData}
-        width={Dimensions.get('window').width - 32}
+        width={Dimensions.get('window').width}
         height={220}
         chartConfig={{
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
         }}
         accessor="population"
         backgroundColor="transparent"
-        paddingLeft="15"
+        paddingLeft="0"
         hasLegend={false}
-        center={[50, 0]}
+        center={[Dimensions.get('window').width / 4, 0]}
       />
     </View>
   );

@@ -27,4 +27,9 @@ export const createStyles = (theme: MD3Theme) =>
     arrowPlaceholder: {
       width: 24,
     },
+    chartContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 220,
+    },
   });
