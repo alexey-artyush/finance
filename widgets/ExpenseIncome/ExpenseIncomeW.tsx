@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { useAppDispatch, useTheme } from 'shared/hooks';
 import { UiList, UiTabsSwitch } from 'shared/ui';
 import { createStyles } from './ExpenseIncomeW.styles';
+import { NavigateToAddExpenseF } from 'features/NavigateToAddExpense';
 
 enum ETabs {
   EXPENSES = 'EXPENSES',
@@ -91,13 +92,14 @@ export const ExpenseIncomeW: FC = () => {
   ];
 
   return (
-    <View style={styles.container}>
+    <View style={styles.expenseIncomeW}>
       <UiTabsSwitch
         tabs={[{ title: ETabs.EXPENSES }, { title: ETabs.INCOME }]}
         currentTab={currentTab}
         onTabChange={title => setCurrentTab(title as ETabs)}
       />
       <ShowStatisticF />
+      <NavigateToAddExpenseF />
       <View style={styles.contentContainer}>
         {currentTab === ETabs.EXPENSES && <UiList data={expensesData} />}
         {currentTab === ETabs.INCOME && <UiList data={incomeData} />}

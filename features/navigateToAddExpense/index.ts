@@ -1,1 +1,1 @@
-export { NavigateToAddExpense } from './NavigateToAddExpense.tsx';
+export * from './NavigateToAddExpenseF';

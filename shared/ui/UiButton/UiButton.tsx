@@ -1,37 +1,61 @@
 import { Button as PaperButton } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
+import { useMemo } from 'react';
+import { useTheme } from 'shared/hooks';
+import { createStyles } from './UiButton.styles';
 
 interface IProps {
   onPress: () => void;
-  title: string;
+  children: React.ReactNode;
   mode?: 'text' | 'outlined' | 'contained';
   loading?: boolean;
   disabled?: boolean;
+  isCircle?: boolean;
+  circleSize?: number;
 }
 
 export const UiButton = ({
   onPress,
-  title,
+  children,
   mode = 'contained',
   loading = false,
   disabled = false,
+  isCircle = false,
+  circleSize = 65,
 }: IProps) => {
+  const { currentTheme } = useTheme();
+  const styles = useMemo(() => createStyles(currentTheme), [currentTheme]);
+
+  const circleStyles = useMemo(() => {
+    if (!isCircle) return {};
+    return {
+      width: circleSize,
+      height: circleSize,
+      minWidth: circleSize,
+      borderRadius: circleSize / 2,
+    };
+  }, [isCircle, circleSize]);
+
+  const circleLabelStyles = useMemo(() => {
+    if (!isCircle) return {};
+    return {
+      fontSize: circleSize * 0.4,
+      lineHeight: circleSize,
+      height: circleSize,
+      margin: 0,
+      padding: 0,
+    };
+  }, [isCircle, circleSize]);
+
   return (
     <PaperButton
       mode={mode}
       onPress={onPress}
       loading={loading}
       disabled={disabled}
-      style={styles.button}
+      style={[styles.uiButton, isCircle && styles.circleButton, isCircle && circleStyles]}
+      labelStyle={[isCircle && styles.circleButtonLabel, isCircle && circleLabelStyles]}
     >
-      {title}
+      {children}
     </PaperButton>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    marginVertical: 8,
-    borderRadius: 8,
-  },
-});

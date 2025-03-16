@@ -109,7 +109,7 @@ export const ShowStatisticF = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.showStatisticF}>
       <UiTabsSwitch tabs={tabs} currentTab={period} onTabChange={handleTabChange} size="m" />
 
       <View style={styles.periodNavigator}>

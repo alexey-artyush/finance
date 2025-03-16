@@ -39,7 +39,7 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
         <View style={styles.container}>
           <UIAmountInput
             value={values.amount}
-            onChange={(value) => setFieldValue('amount', value)}
+            onChange={value => setFieldValue('amount', value)}
             autoFocus={true}
           />
           {touched.amount && errors.amount && (
@@ -47,12 +47,12 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
           )}
 
           <View style={styles.expensesContainer}>
-            {expenses.map((expense) => (
+            {expenses.map(expense => (
               <View key={expense.id} style={styles.itemWrapper}>
                 <ExpenseItem
                   currentExpense={values.expenseId === expense.id}
                   expense={expense}
-                  onPress={(expense) => setFieldValue('expenseId', expense.id)}
+                  onPress={expense => setFieldValue('expenseId', expense.id)}
                 />
               </View>
             ))}
@@ -62,7 +62,7 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
           </View>
 
           <View style={styles.datesContainer}>
-            {dates.map((date) => (
+            {dates.map(date => (
               <Pressable
                 key={date.toISOString()}
                 style={[
