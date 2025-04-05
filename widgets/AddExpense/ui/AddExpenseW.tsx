@@ -1,19 +1,25 @@
-import { FC, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { ExpenseItem } from '../../entities/expense/ui/ExpenseItem/ExpenseItem';
-import { IExpense, TExpenseForm } from '../../entities/expense/model';
+import { ExpenseItem } from '../../../entities/expense/ui/ExpenseItem/ExpenseItem';
+import { IExpense, TExpenseForm } from '../../../entities/expense/model';
 import { Formik } from 'formik';
-import { useValidationSchema } from './model/hooks/useValidationSchema';
+import { useValidationSchema } from '../model/hooks/useValidationSchema';
 import { getFormattedDate, getThreeDays } from 'shared/utils/dates';
-import { UIAmountInput } from 'shared/ui';
+import { UiCurrencySelector, UiInput } from 'shared/ui';
 import { createStyles } from './AddExpense.styles';
 import { useTheme } from 'shared/hooks';
+
+const currencies = [
+  { code: 'RUB', symbol: '₽' },
+  { code: 'USD', symbol: '$' },
+  { code: 'EUR', symbol: '€' },
+];
 
 interface IProps {
   expenses: IExpense[];
 }
 
-export const AddExpense: FC<IProps> = ({ expenses }) => {
+export const AddExpenseW = ({ expenses }: IProps) => {
   const dates = getThreeDays();
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const { currentTheme } = useTheme();
@@ -37,15 +43,20 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
     >
       {({ handleSubmit, values, setFieldValue, errors, touched }) => (
         <View style={styles.container}>
-          <UIAmountInput
+          <UiInput
+            numbersOnly={true}
+            onChangeText={value => setFieldValue('amount', value)}
             value={values.amount}
-            onChange={value => setFieldValue('amount', value)}
-            autoFocus={true}
+            label=""
+            rightContent={
+              <UiCurrencySelector
+                currencies={currencies}
+                selectedCurrency={currencies[0]}
+                onCurrencyChange={() => {}}
+              />
+            }
+            error={touched.amount && errors.amount ? errors.amount : undefined}
           />
-          {touched.amount && errors.amount && (
-            <Text style={styles.amountError}>{errors.amount}</Text>
-          )}
-
           <View style={styles.expensesContainer}>
             {expenses.map(expense => (
               <View key={expense.id} style={styles.itemWrapper}>
@@ -56,9 +67,6 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
                 />
               </View>
             ))}
-            {touched.expenseId && errors.expenseId && (
-              <Text style={styles.expenseError}>{errors.expenseId}</Text>
-            )}
           </View>
 
           <View style={styles.datesContainer}>
@@ -83,13 +91,7 @@ export const AddExpense: FC<IProps> = ({ expenses }) => {
             ))}
           </View>
 
-          <Pressable
-            style={[
-              styles.submitButton,
-              (!values.amount || !values.expenseId) && styles.submitButtonDisabled,
-            ]}
-            onPress={() => handleSubmit()}
-          >
+          <Pressable style={[styles.submitButton]} onPress={() => handleSubmit()}>
             <Text style={styles.submitButtonText}>Add Expense</Text>
           </Pressable>
         </View>

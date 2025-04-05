@@ -1,7 +1,7 @@
 import { IExpense } from 'entities/expense';
 import { getExpenses, getExpensesThunk } from 'entities/expense/model';
 import { IIncome } from 'entities/income';
-import { AddExpense } from 'features/AddExpense/AddExpense';
+import { AddExpense } from 'widgets/AddExpense/ui/AddExpenseW';
 import { FC, useEffect } from 'react';
 import { View } from 'react-native';
 import { useSelector } from 'react-redux';

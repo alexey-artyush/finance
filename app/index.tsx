@@ -72,7 +72,7 @@ export default function Home() {
       amount: 15000,
     },
   ];
-  
+
   return (
     <View style={styles.container}>
       <ExpenseIncomeLayout
@@ -86,7 +86,7 @@ export default function Home() {
       </ExpenseIncomeLayout>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { lightTheme } from '@/app/themes';
+import { MD3Theme } from 'react-native-paper';
 
-export const createStyles = (theme: typeof lightTheme) =>
+export const createStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     container: {
       alignItems: 'center',
@@ -9,17 +9,17 @@ export const createStyles = (theme: typeof lightTheme) =>
       borderRadius: 8,
     },
     activeContainer: {
-      backgroundColor: theme.background,
+      backgroundColor: theme.colors.elevation.level5,
     },
     circle: {
       width: 50,
       height: 50,
       borderRadius: 25,
-      backgroundColor: theme.primary,
+      backgroundColor: theme.colors.primary,
       marginBottom: 8,
     },
     title: {
       fontSize: 14,
-      color: theme.text,
+      color: theme.colors.primary,
     },
   });

@@ -5,7 +5,7 @@ export const getThreeDays = (): Date[] => {
   const twoDaysAgo = new Date(today);
   twoDaysAgo.setDate(today.getDate() - 2);
 
-  return [today, yesterday, twoDaysAgo];
+  return [twoDaysAgo, yesterday, today];
 };
 
 export const getFormattedDate = (date: Date): string => {

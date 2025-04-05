@@ -16,9 +16,6 @@ interface IProps {
 export const ExpenseIncomeLayout = ({ children, expensesComponent, incomeComponent }: IProps) => {
   const [currentTab, setCurrentTab] = useState(tabs[0].title);
 
-  console.log(currentTab, 'currentTab');
-  
-
   return (
     <View style={styles.container}>
       <UiTabsSwitch
