@@ -4,19 +4,21 @@ import { MD3Theme } from 'react-native-paper';
 export const createStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     uiList: {
-      flex: 1,
+      marginTop: 20,
       width: '100%',
+      height: '100%',
+      backgroundColor: theme.colors.surfaceVariant,
     },
     listItem: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingVertical: 12,
+      paddingVertical: 8,
       borderBottomWidth: 1,
       borderBottomColor: theme.colors.outlineVariant,
     },
     listContent: {
-      paddingHorizontal: 16,
+      paddingHorizontal: 12,
     },
     leftSection: {
       flexDirection: 'row',
@@ -25,7 +27,7 @@ export const createStyles = (theme: MD3Theme) =>
     iconContainer: {
       width: 36,
       height: 36,
-      borderRadius: 18,
+      borderRadius: 16,
       justifyContent: 'center',
       alignItems: 'center',
       marginRight: 12,

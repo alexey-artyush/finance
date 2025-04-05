@@ -20,7 +20,7 @@ export const UiButton = ({
   loading = false,
   disabled = false,
   isCircle = false,
-  circleSize = 65,
+  circleSize = 45,
 }: IProps) => {
   const { currentTheme } = useTheme();
   const styles = useMemo(() => createStyles(currentTheme), [currentTheme]);

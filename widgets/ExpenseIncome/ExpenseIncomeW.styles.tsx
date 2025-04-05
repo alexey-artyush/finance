@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 export const createStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     expenseIncomeW: {
-      flex: 1,
       backgroundColor: theme.colors.background,
     },
     contentContainer: {

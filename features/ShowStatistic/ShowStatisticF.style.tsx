@@ -4,7 +4,8 @@ import { StyleSheet } from 'react-native';
 export const createStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     showStatisticF: {
-      padding: 16,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
       gap: 16,
     },
     periodNavigator: {

@@ -4,3 +4,4 @@ export * from './UIAmountInput/UIAmountInput';
 export * from './UiTabsSwitch/UiTabsSwitch';
 export * from './UiChart/UiChart';
 export * from './UiList/UiList';
+export * from './ExpenseIncomeLayout/ExpenseIncomeLayout';

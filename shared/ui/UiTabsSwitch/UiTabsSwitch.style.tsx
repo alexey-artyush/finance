@@ -6,7 +6,7 @@ export const createStyles = (theme: MD3Theme, size: 'm' | 'l') =>
     container: {},
     buttonWrapper: {
       flexDirection: 'row',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       alignItems: 'center',
       gap: size === 'm' ? 10 : 20,
     },
